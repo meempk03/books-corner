@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/app/ui/globals.css";
+import "./ui/globals.css";
 import { geistSans, geistMono } from "./ui/fonts";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
