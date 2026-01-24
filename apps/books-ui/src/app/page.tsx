@@ -1,4 +1,6 @@
-export default function Home() {
+export default async function Home() {
+  const books = await fetch(`http://localhost:4000/books?search='harrypotter'`).then((res) => res.json());
+  console.log('boooks', books);
   return (
     <>
       {/* Hero Section */}
