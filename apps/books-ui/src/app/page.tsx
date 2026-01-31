@@ -1,3 +1,12 @@
+import {
+  relatedProjects,
+  type VercelRelatedProject,
+} from '@vercel/related-projects';
+ 
+// fully typed project data
+const projects: VercelRelatedProject[] = relatedProjects();
+console.log('Related Projects:', projects);
+
 export default async function Home() {
   // const books = await fetch(`http://localhost:4000/books?search='harrypotter'`).then((res) => res.json());
   // console.log('boooks', books);
