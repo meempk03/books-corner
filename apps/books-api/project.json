@@ -14,7 +14,7 @@
         "outputPath": "dist/apps/books-api",
         "format": ["cjs"],
         "bundle": false,
-        "main": "apps/books-api/src/main.ts",
+        "main": "apps/books-api/src/index.ts",
         "tsConfig": "apps/books-api/tsconfig.app.json",
         "assets": ["apps/books-api/src/assets"],
         "generatePackageJson": true,
