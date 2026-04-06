@@ -1,9 +1,8 @@
 import { API_BASE_URL, API_URL } from "./lib/api";
 
 export default async function Home() {
-  console.log('API_BASE_URL', API_BASE_URL);
-  // const books = await fetch(`${API_BASE_URL}/books?search='harrypotter'`).then((res) => res.json());
-  // console.log('boooks', books);
+  const books = await fetch(`${API_URL}/books?search='harrypotter'`).then((res) => res.json());
+  console.log('boooks', books);
   return (
     <>
       {/* Hero Section */}
