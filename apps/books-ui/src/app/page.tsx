@@ -9,6 +9,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="max-w-2xl mx-auto px-4">
+        Base url {API_BASE_URL}
           <h2 className="text-4xl font-bold mb-4">Discover Your Next Great Read</h2>
           <p className="text-moonstone text-lg mb-6">
             Explore thousands of books from every genre and author you love.
