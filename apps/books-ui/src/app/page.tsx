@@ -1,16 +1,8 @@
-// import {
-//   relatedProjects,
-//   type VercelRelatedProject,
-// } from '@vercel/related-projects';
 import { API_BASE_URL } from "./lib/api";
- 
-// fully typed project data
-// const projects: VercelRelatedProject[] = relatedProjects();
-// console.log('Related Projects:', projects);
 
 export default async function Home() {
-  const books = await fetch(`${API_BASE_URL}/books?search='harrypotter'`).then((res) => res.json());
-  console.log('boooks', books);
+  // const books = await fetch(`${API_BASE_URL}/books?search='harrypotter'`).then((res) => res.json());
+  // console.log('boooks', books);
   return (
     <>
       {/* Hero Section */}
