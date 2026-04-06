@@ -1,4 +1,4 @@
-import { API_BASE_URL } from "./lib/api";
+import { API_BASE_URL, API_URL } from "./lib/api";
 
 export default async function Home() {
   console.log('API_BASE_URL', API_BASE_URL);
@@ -10,6 +10,7 @@ export default async function Home() {
       <section className="py-20 text-center">
         <div className="max-w-2xl mx-auto px-4">
         Base url {API_BASE_URL}
+        New base url{API_URL}
           <h2 className="text-4xl font-bold mb-4">Discover Your Next Great Read</h2>
           <p className="text-moonstone text-lg mb-6">
             Explore thousands of books from every genre and author you love.
