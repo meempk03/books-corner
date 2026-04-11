@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
 
-export default function Page() {
+export default async function Page() {
   return (
     <>
       {/* Hero Section */}
