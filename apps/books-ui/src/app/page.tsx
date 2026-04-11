@@ -3,7 +3,7 @@ import { API_URL } from './lib/api';
 import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
 
-export default async function Home() {
+export default async function Page() {
   const books = await fetch(`${API_URL}/books?search='harrypotter'`).then(
     (res) => res.json()
   );
@@ -26,9 +26,9 @@ export default async function Home() {
       </section>
 
       {/* Popular Genres */}
-      {/* <Suspense fallback={<div className="text-center py-16">Loading genres...</div>}>
+      <Suspense fallback={<div className="text-center py-16">Loading genres...</div>}>
         <Genres />
-      </Suspense> */}
+      </Suspense>
 
       {/* Featured Books */}
       < FeaturedBooks />
