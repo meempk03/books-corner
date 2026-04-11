@@ -26,9 +26,9 @@ export default async function Home() {
       </section>
 
       {/* Popular Genres */}
-      <Suspense fallback={<div className="text-center py-16">Loading genres...</div>}>
+      {/* <Suspense fallback={<div className="text-center py-16">Loading genres...</div>}>
         <Genres />
-      </Suspense>
+      </Suspense> */}
 
       {/* Featured Books */}
       < FeaturedBooks />
