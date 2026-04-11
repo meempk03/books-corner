@@ -1,13 +1,8 @@
 import { Suspense } from 'react';
-import { API_URL } from './lib/api';
 import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
 
-export default async function Page() {
-  const books = await fetch(`${API_URL}/books?search='harrypotter'`).then(
-    (res) => res.json()
-  );
-  console.log('boooks', books);
+export default function Page() {
   return (
     <>
       {/* Hero Section */}
@@ -26,12 +21,14 @@ export default async function Page() {
       </section>
 
       {/* Popular Genres */}
-      <Suspense fallback={<div className="text-center py-16">Loading genres...</div>}>
+      <Suspense
+        fallback={<div className="text-center py-16">Loading genres...</div>}
+      >
         <Genres />
       </Suspense>
 
       {/* Featured Books */}
-      < FeaturedBooks />
+      <FeaturedBooks />
 
       {/* Newsletter Section */}
       <section className="py-16 text-center border-t border-moonstone">

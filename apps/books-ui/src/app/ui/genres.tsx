@@ -1,10 +1,9 @@
 import { API_URL } from '../lib/api';
 
 export default async function Genres() {
-  // const genres: string[] = await fetch(`${API_URL}/genres`).then((res) => res.json());
   const genresResp = await fetch(`${API_URL}/genres`);
   const genres: string[] = await genresResp.json();
-  console.log('genres', genres);  
+  console.log('genres', genres);
 
   return (
     <section className="py-16">
