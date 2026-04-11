@@ -1,9 +1,32 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { API_URL } from '../lib/api';
 
-export default async function Genres() {
-  const genresResp = await fetch(`${API_URL}/genres`);
-  const genres: string[] = await genresResp.json();
-  console.log('genres', genres);
+export default function Genres() {
+  const [genres, setGenres] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch(`${API_URL}/genres`);
+        const data = await response.json();
+        console.log('Genres:', data);
+        setGenres(data);
+      } catch (error) {
+        console.error('Failed to fetch books:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGenres();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-16">Loading genres...</div>;
+  }
 
   return (
     <section className="py-16">

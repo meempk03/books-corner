@@ -1,8 +1,7 @@
-import { Suspense } from 'react';
 import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       {/* Hero Section */}
@@ -21,11 +20,7 @@ export default async function Page() {
       </section>
 
       {/* Popular Genres */}
-      <Suspense
-        fallback={<div className="text-center py-16">Loading genres...</div>}
-      >
-        <Genres />
-      </Suspense>
+      <Genres />
 
       {/* Featured Books */}
       <FeaturedBooks />
