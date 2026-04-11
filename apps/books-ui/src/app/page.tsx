@@ -3,6 +3,9 @@ import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
 
 export default function Page() {
+  console.log('API URL info:', process.env.NEXT_PUBLIC_API_URL, process.env.VERCEL_BRANCH_URL, process.env.VERCEL_RELATED_PROJECTS,
+    process.env.VERCEL_ENV, process.env.VERCEL_PROJECT_PRODUCTION_URL
+  );
   return (
     <>
       {/* Hero Section */}
