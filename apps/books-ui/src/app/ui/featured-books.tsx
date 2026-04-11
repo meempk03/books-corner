@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '../lib/api';
 import { Book } from '../lib/book.interface';
 
-export function FeaturedBooks() {
+export default function FeaturedBooks() {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState(true);
 

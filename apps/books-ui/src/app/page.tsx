@@ -1,6 +1,7 @@
+import { Suspense } from 'react';
 import { API_URL } from './lib/api';
-import { FeaturedBooks } from './ui/featured-books';
-import { Genres } from './ui/genres';
+import FeaturedBooks from './ui/featured-books';
+import Genres from './ui/genres';
 
 export default async function Home() {
   const books = await fetch(`${API_URL}/books?search='harrypotter'`).then(
@@ -25,7 +26,9 @@ export default async function Home() {
       </section>
 
       {/* Popular Genres */}
-      <Genres />
+      <Suspense fallback={<div className="text-center py-16">Loading genres...</div>}>
+        <Genres />
+      </Suspense>
 
       {/* Featured Books */}
       < FeaturedBooks />
