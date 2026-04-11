@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@vercel/related-projects':
+        specifier: ^1.0.1
+        version: 1.0.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -3130,6 +3133,9 @@ packages:
     resolution: {integrity: sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g==}
     cpu: [x64]
     os: [win32]
+
+  '@vercel/related-projects@1.0.1':
+    resolution: {integrity: sha512-gCgaY/LHQXue7XaviZqbr1ZGQOhFmBL13fBYkt4Dr+fONyoHH/awH6steYfkwPQyi/479mZ0mQax84p0/bDs5A==}
 
   '@vitest/expect@3.2.4':
     resolution: {integrity: sha512-Io0yyORnB6sikFlt8QW5K7slY4OjqNX9jmJQ02QDda8lyM6B5oNgVWoSoKPac8/kgnCUzuHQKrSLtu/uOqqrig==}
@@ -11609,6 +11615,10 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.11.1':
     optional: true
+
+  '@vercel/related-projects@1.0.1':
+    optionalDependencies:
+      ajv: 6.12.6
 
   '@vitest/expect@3.2.4':
     dependencies:

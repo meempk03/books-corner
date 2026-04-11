@@ -1,3 +1,4 @@
+import { API_URL_BASE } from './lib/api';
 import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
 
@@ -7,6 +8,7 @@ export default function Page() {
       {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="max-w-2xl mx-auto px-4">
+          {API_URL_BASE}
           <h2 className="text-4xl font-bold mb-4">
             Discover Your Next Great Read
           </h2>
