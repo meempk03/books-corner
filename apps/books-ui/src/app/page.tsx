@@ -1,17 +1,12 @@
-import { API_URL_BASE } from './lib/api';
 import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
 
 export default function Page() {
-  console.log('API URL info:', process.env.NEXT_PUBLIC_API_URL, process.env.VERCEL_BRANCH_URL, process.env.VERCEL_RELATED_PROJECTS,
-    process.env.VERCEL_ENV, process.env.VERCEL_PROJECT_PRODUCTION_URL
-  );
   return (
     <>
       {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="max-w-2xl mx-auto px-4">
-          {API_URL_BASE}
           <h2 className="text-4xl font-bold mb-4">
             Discover Your Next Great Read
           </h2>
