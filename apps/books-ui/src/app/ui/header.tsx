@@ -8,7 +8,7 @@ import { NAV_LINKS } from '../lib/constants';
 
 export default function Header() {
     const pathname = usePathname();
-    console.log('Header pathname:', pathname);
+
     return (
         <>
             <header className="border-b border-moonstone">
