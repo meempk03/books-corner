@@ -5,6 +5,15 @@ export const router = express.Router();
 
 const API_BASE_URL = 'https://openlibrary.org';
 
+const formatBook = (book: any): Book => ({
+  title: book.title,
+  authorName: book.author_name.map((name: string) => name.trim()).join(', '),
+  firstPublishYear: book.first_publish_year,
+  authorKey: book.author_key,
+  coverId: book.cover_i,
+  coverImage: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+});
+
 router.get('/books', async (req, res) => {
   try {
     const response = await fetch(
@@ -13,13 +22,7 @@ router.get('/books', async (req, res) => {
       )}`
     );
     const booksJson = await response.json();
-    const books: Book[] = booksJson.docs.map((book: any) => ({
-      title: book.title,
-      authorName: book.author_name,
-      firstPublishYear: book.first_publish_year,
-      authorKey: book.author_key,
-      coverId: book.cover_i,
-    }));
+    const books: Book[] = booksJson.docs.map((book: any) => formatBook(book));
     res.send(books);
   } catch (e) {
     console.log(e);
@@ -55,16 +58,10 @@ router.get('/featuredBooks', async (req, res) => {
     console.log('booksJson', booksJson.docs.slice(0, 3));
     const books: Book[] = booksJson.docs
       .slice(0, 3) // Get first 3 books
-      .map((book: any) => ({
-        title: book.title,
-        authorName: book.author_name,
-        firstPublishYear: book.first_publish_year,
-        authorKey: book.author_key,
-        coverId: book.cover_i,
-      }));
+      .map((book: any) => formatBook(book));
     res.send(books);
   } catch (e) {
     console.log(e);
     res.status(500).send();
   }
-});
+}); 

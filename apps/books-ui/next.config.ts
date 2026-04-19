@@ -5,7 +5,10 @@ const nextConfig: NextConfig = {
   /* config options here */
   nx: {
     svgr: false,
-  }
+  },
+  images: {
+    domains: ['covers.openlibrary.org'],
+  },
 };
 
 /**
