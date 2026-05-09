@@ -38,9 +38,11 @@ router.get('/genres', async (req, res) => {
       'Fantasy',
       'Romance',
       'Science Fiction',
-      'Biography',
+      // 'Biography',
       'History',
-      'Self-Help',
+      // 'Self-Help',
+      'Horror',
+      'Thriller',
     ];
     res.send(genres);
   } catch (e) {
