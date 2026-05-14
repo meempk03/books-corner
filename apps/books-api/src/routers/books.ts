@@ -1,5 +1,6 @@
 import express from 'express';
 import { Book } from '../models/book.interface';
+import { buildBooksQuery } from '../lib/books-query';
 
 export const router = express.Router();
 
@@ -7,19 +8,27 @@ const API_BASE_URL = 'https://openlibrary.org';
 
 const formatBook = (book: any): Book => ({
   title: book.title,
-  authorName: book.author_name.map((name: string) => name.trim()).join(', '),
-  firstPublishYear: book.first_publish_year,
+  authorName: book.author_name ?? ['Unknown Author'],
   authorKey: book.author_key,
+  firstPublishYear: book.first_publish_year,
   coverId: book.cover_i,
-  coverImage: `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+  language: book.language,
+  coverEditionKey: book.cover_edition_key,
+  id: book.key,
+  coverImage: book.cover_i
+    ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+    : `/assets/${Math.random() > 0.5 ? 'fallback1' : 'fallback2'}.png`,
 });
 
 router.get('/books', async (req, res) => {
   try {
+    const fields =
+      'title,author_name,author_key,cover_i,first_publish_year,key,language,cover_edition_key';
+    const query = buildBooksQuery(req.query);
     const response = await fetch(
       `${API_BASE_URL}/search.json?q=${encodeURIComponent(
-        req.query.search?.toString() ?? ''
-      )}`
+        query
+      )}&fields=${fields}&limit=25`
     );
     const booksJson = await response.json();
     const books: Book[] = booksJson.docs.map((book: any) => formatBook(book));
@@ -54,7 +63,7 @@ router.get('/genres', async (req, res) => {
 router.get('/featuredBooks', async (req, res) => {
   try {
     const response = await fetch(
-      `${API_BASE_URL}/search.json?q=${encodeURIComponent('featured books')}`
+      `${API_BASE_URL}/search.json?q=${encodeURIComponent('latest')}`
     );
     const booksJson = await response.json();
     console.log('booksJson', booksJson.docs.slice(0, 3));
@@ -66,4 +75,4 @@ router.get('/featuredBooks', async (req, res) => {
     console.log(e);
     res.status(500).send();
   }
-}); 
+});

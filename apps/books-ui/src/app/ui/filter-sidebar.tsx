@@ -4,13 +4,7 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useFilters } from '../lib/use-filters';
 
-export default function FilterSidebar({
-  genres,
-  authors,
-}: {
-  genres: string[];
-  authors: string[];
-}) {
+export default function FilterSidebar({ genres }: { genres: string[] }) {
   const [openSections, setOpenSections] = useState({
     genre: true,
     author: true,
@@ -76,7 +70,7 @@ export default function FilterSidebar({
         <h2 className="text-lg font-bold mb-6 text-oxfordblue">Filters</h2>
 
         {filterSection('Genre', genres, 'genre')}
-        {filterSection('Author', authors, 'author')}
+        {/* {filterSection('Author', authors, 'author')} */}
 
         <div className="flex gap-4 mt-6">
           <button

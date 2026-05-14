@@ -56,15 +56,15 @@ export function useFilters() {
     });
   }, [filters]);
 
-    // Add / update query
+    // Add / update search query
     const setQuery = useCallback(
       (value: string) => {
         const newFilters = { ...currentFilters };
   
         if (value) {
-          newFilters['query'] = [value];
+          newFilters['search'] = [value];
         } else {
-          delete newFilters['query'];
+          delete newFilters['search'];
         }
   
         const query = createQueryString(newFilters);

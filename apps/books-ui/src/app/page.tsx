@@ -4,7 +4,6 @@ import Genres from './ui/genres';
 export default function Page() {
   return (
     <>
-      {/* Hero Section */}
       <section className="py-20 text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4">

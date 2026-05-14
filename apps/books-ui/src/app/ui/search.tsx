@@ -6,7 +6,7 @@ import { useFilters } from '../lib/use-filters';
 
 export default function SearchBar({ placeholder }: { placeholder: string }) {
   const { filters, setQuery } = useFilters();
-  const searchQuery: string = Array.isArray(filters.query) ? filters.query[0] : '';
+  const searchQuery: string = Array.isArray(filters.search) ? filters.search[0] : '';
 
   const handleSearch = useDebouncedCallback((query: string) => setQuery(query), 300);
 
