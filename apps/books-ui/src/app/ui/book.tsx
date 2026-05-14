@@ -3,26 +3,28 @@ import Image from 'next/image';
 
 export default function BookCard({ book }: { book: Book }) {
   return (
-    <div className="bg-moonstone rounded-lg shadow-lg text-slate-950 overflow-hidden flex flex-col h-full">
-      <div className="bg-green-50 w-full aspect-[3/4] overflow-hidden">
-        <Image
-          src={book.coverImage}
-          alt={book.title}
-          width={180}
-          height={280}
-          className="h-full w-full object-cover"
-        />
-      </div>
-      <div className="p-4 flex-1 flex flex-col">
-        <h4 className="text-xl font-semibold mb-2">{book.title}</h4>
-        {/* <p className="text-sm self-end">
-          {book.authorName.map((author, index) => 
-            index === book.authorName.length - 1 ? author : `${author}, `
-          ).join('')}
-          </p> */}
-        <p className="text-sm">
-          A short summary of the book goes here. Make it catchy and concise!
-        </p>
+    <div className="group relative aspect-[3/4] overflow-hidden rounded-3xl border border-amber-100/10 bg-black shadow-2xl">
+      {/* Background image or fallback */}
+      <Image
+        src={book.coverImage}
+        alt={book.title}
+        width={180}
+        height={280}
+        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+      />
+
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
+
+      {/* Decorative border */}
+      <div className="absolute inset-3 rounded-2xl border border-amber-100/10" />
+
+      {/* Content */}
+      <div className="absolute bottom-0 z-10 p-5 text-green-50">
+        <h2 className="mt-3 text-xl font-bold leading-tight drop-shadow-lg">
+          {book.title}
+        </h2>
+        <p className="mt-2 text-sm text-moonstone">{book.firstPublishYear}</p>
       </div>
     </div>
   );

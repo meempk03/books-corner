@@ -22,30 +22,10 @@ export default function Page() {
       <Genres />
 
       {/* Featured Books */}
-      <FeaturedBooks />
-
-      {/* Newsletter Section */}
-      <section className="py-16 text-center border-t border-moonstone">
-        <div className="max-w-xl mx-auto px-4">
-          <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
-          <p className="text-moonstone mb-6">
-            Subscribe to our newsletter for the latest books and updates.
-          </p>
-          <form className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="px-4 py-2 rounded-md bg-green-50 text-slate-950 w-full sm:w-auto"
-            />
-            <button
-              type="submit"
-              className="bg-red-700 hover:bg-red-800 text-green-50 px-6 py-2 rounded-md font-semibold transition"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </section>
+      <FeaturedBooks type={'Popular'}/>
+      <FeaturedBooks type={'Romance'}/>
+      <FeaturedBooks type={'Classics'}/>
+      <FeaturedBooks type={'Motivational'}/>
     </>
   );
 }

@@ -28,7 +28,7 @@ router.get('/books', async (req, res) => {
     const response = await fetch(
       `${API_BASE_URL}/search.json?q=${encodeURIComponent(
         query
-      )}&fields=${fields}&limit=25`
+      )}&fields=${fields}&limit=${req.query.limit ?? 25}`
     );
     const booksJson = await response.json();
     const books: Book[] = booksJson.docs.map((book: any) => formatBook(book));
@@ -54,23 +54,6 @@ router.get('/genres', async (req, res) => {
       'Thriller',
     ];
     res.send(genres);
-  } catch (e) {
-    console.log(e);
-    res.status(500).send();
-  }
-});
-
-router.get('/featuredBooks', async (req, res) => {
-  try {
-    const response = await fetch(
-      `${API_BASE_URL}/search.json?q=${encodeURIComponent('latest')}`
-    );
-    const booksJson = await response.json();
-    console.log('booksJson', booksJson.docs.slice(0, 3));
-    const books: Book[] = booksJson.docs
-      .slice(0, 3) // Get first 3 books
-      .map((book: any) => formatBook(book));
-    res.send(books);
   } catch (e) {
     console.log(e);
     res.status(500).send();
