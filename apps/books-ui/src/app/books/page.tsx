@@ -62,7 +62,7 @@ export default async function Page({
             ) : (
               <div className="bg-card rounded-md p-12 text-center border border-muted">
                 <p className="text-muted text-lg">
-                  No books found matching your filters.
+                  No books found matching your filters. 
                 </p>
               </div>
             )}
