@@ -1,10 +1,37 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-oxfordblue: #0A1B33;
-  --color-moonstone: #7CA7A9;
+
+  /* Main app background */
+  --color-background: #1A1612;
+
+  /* Sidebar / panels */
+  --color-surface: #1c1814;
+
+  /* Cards / modals */
+  --color-card: #241f1a;
+
+  /* Main readable text */
+  --color-primary: #faf4e8;
+
+  /* Paragraphs / descriptions */
+  --color-secondary: #ded2be;
+
+  /* Metadata / subtle labels */
+  --color-muted: #b0a087;
+
+  /* Antique gold */
+  --color-gold: #e6be78;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  --radius-card: 28px;
+
+  --shadow-cinematic: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+  --shadow-glow: 0 0 40px rgba(230, 190, 120, 0.15);
 }
 
 body {

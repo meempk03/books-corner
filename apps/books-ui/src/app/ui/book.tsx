@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function BookCard({ book }: { book: Book }) {
   return (
-    <div className="group relative aspect-[3/4] overflow-hidden rounded-3xl border border-amber-100/10 bg-black shadow-2xl">
+    <div className="group relative aspect-[3/4] overflow-hidden rounded-3xl border border-border bg-black shadow-2xl">
       {/* Background image or fallback */}
       <Image
         src={book.coverImage}
@@ -17,14 +17,14 @@ export default function BookCard({ book }: { book: Book }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
 
       {/* Decorative border */}
-      <div className="absolute inset-3 rounded-2xl border border-amber-100/10" />
+      <div className="absolute inset-3 rounded-2xl border border-border" />
 
       {/* Content */}
-      <div className="absolute bottom-0 z-10 p-5 text-green-50">
+      <div className="absolute bottom-0 z-10 p-5 text-primary">
         <h2 className="mt-3 text-xl font-bold leading-tight drop-shadow-lg">
           {book.title}
         </h2>
-        <p className="mt-2 text-sm text-moonstone">{book.firstPublishYear}</p>
+        <p className="mt-2 text-sm text-secondary">{book.firstPublishYear}</p>
       </div>
     </div>
   );

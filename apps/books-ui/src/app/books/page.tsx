@@ -46,7 +46,7 @@ export default async function Page({
             <SearchBar placeholder="Search books or authors..." />
 
             <div className="mb-6">
-              <p className="text-moonstone">
+              <p className="text-muted">
                 Showing{' '}
                 <span className="font-semibold">{filteredBooks.length}</span>{' '}
                 books
@@ -60,8 +60,8 @@ export default async function Page({
                 ))}
               </div>
             ) : (
-              <div className="bg-green-50 rounded-md p-12 text-center border border-moonstone">
-                <p className="text-moonstone text-lg">
+              <div className="bg-card rounded-md p-12 text-center border border-muted">
+                <p className="text-muted text-lg">
                   No books found matching your filters.
                 </p>
               </div>
