@@ -25,7 +25,7 @@ export default function FilterSidebar({ genres }: { genres: string[] }) {
     const selectedFilters = filters[type] || [];
 
     return (
-      <div className="border-b border-moonstone pb-3">
+      <div className="border-b border-muted pb-3">
         <button
           onClick={() =>
             setOpenSections((prev) => ({
@@ -33,7 +33,7 @@ export default function FilterSidebar({ genres }: { genres: string[] }) {
               [type]: !prev[type as keyof typeof prev],
             }))
           }
-          className="flex items-center justify-between w-full mb-3 font-semibold text-oxfordblue hover:text-moonstone transition"
+          className="flex items-center justify-between w-full mb-3 font-semibold text-primary hover:text-gold transition"
         >
           {title}
           <ChevronDown
@@ -53,9 +53,9 @@ export default function FilterSidebar({ genres }: { genres: string[] }) {
                   type="checkbox"
                   checked={selectedFilters.includes(item)}
                   onChange={() => handleToggle(type, item)}
-                  className="w-4 h-4 accent-red-700 rounded"
+                  className="w-4 h-4 accent-gold rounded"
                 />
-                <span className="text-sm text-oxfordblue">{item}</span>
+                <span className="text-sm text-secondary">{item}</span>
               </label>
             ))}
           </div>
@@ -66,8 +66,8 @@ export default function FilterSidebar({ genres }: { genres: string[] }) {
 
   return (
     <aside className="lg:col-span-1">
-      <div className="bg-green-50 rounded-md p-6 sticky top-24">
-        <h2 className="text-lg font-bold mb-6 text-oxfordblue">Filters</h2>
+      <div className="bg-surface rounded-md p-6 sticky top-0">
+        <h2 className="text-lg font-bold mb-6 text-primary">Filters</h2>
 
         {filterSection('Genre', genres, 'genre')}
         {/* {filterSection('Author', authors, 'author')} */}
@@ -75,13 +75,13 @@ export default function FilterSidebar({ genres }: { genres: string[] }) {
         <div className="flex gap-4 mt-6">
           <button
             onClick={clearFilters}
-            className="flex-1 px-4 py-2 border border-red-700 text-red-700 hover:bg-red-50 rounded-md font-semibold transition"
+            className="flex-1 px-4 py-2 border border-gold text-gold hover:bg-gold/10 rounded-md font-semibold transition"
           >
             Reset
           </button>
           <button
             onClick={applyFilters}
-            className="flex-1 px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded-md font-semibold transition"
+            className="flex-1 px-4 py-2 bg-gold hover:bg-gold/90 text-surface rounded-md font-semibold transition"
           >
             Apply
           </button>

@@ -19,7 +19,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
       >
-        <div className="min-h-screen flex flex-col bg-oxfordblue text-green-50">
+        <div className="bg-background bg-[radial-gradient(circle_at_top,rgba(255,210,120,0.08),transparent_35%)] text-primary min-h-screen flex flex-col">
           <Header />
           <main className="grow">
             {children}
