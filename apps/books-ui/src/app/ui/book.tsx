@@ -21,7 +21,7 @@ export default function BookCard({ book }: { book: Book }) {
 
       {/* Content */}
       <div className="absolute bottom-0 z-10 p-5 text-primary">
-        <h2 className="mt-3 text-xl font-bold leading-tight drop-shadow-lg">
+        <h2 className="mt-3 text-lg font-bold leading-tight drop-shadow-lg">
           {book.title}
         </h2>
         <p className="mt-2 text-sm text-secondary">{book.firstPublishYear}</p>

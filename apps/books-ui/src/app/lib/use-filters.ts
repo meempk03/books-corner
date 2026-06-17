@@ -29,73 +29,75 @@ export function useFilters() {
   const currentFilters = localFilters || filters;
 
   // Helper to build URL
-  const createQueryString = useCallback(
-    (newFilters: Filters) => {
-      const params = new URLSearchParams();
+  const createQueryString = useCallback((newFilters: Filters) => {
+    const params = new URLSearchParams();
 
-      Object.entries(newFilters).forEach(([key, values]) => {
-        values.forEach((value) => {
-          params.append(key, value);
-        });
+    Object.entries(newFilters).forEach(([key, values]) => {
+      values.forEach((value) => {
+        params.append(key, value);
       });
+    });
 
-      return params.toString();
-    },
-    []
-  );
+    return params.toString();
+  }, []);
 
   // Add / update filter
-  const setFilter = useCallback((key: string, value: string) => {
-    setLocalFilters((prev) => {
-      const updated = { ...(prev || filters) };
-      if (!updated[key]) updated[key] = [];
-      if (!updated[key].includes(value)) {
-        updated[key].push(value);
-      }
-      return updated;
-    });
-  }, [filters]);
-
-    // Add / update search query
-    const setQuery = useCallback(
-      (value: string) => {
-        const newFilters = { ...currentFilters };
-  
-        if (value) {
-          newFilters['search'] = [value];
-        } else {
-          delete newFilters['search'];
+  const setFilter = useCallback(
+    (key: string, value: string) => {
+      setLocalFilters((prev) => {
+        const updated = { ...(prev || filters) };
+        if (!updated[key]) updated[key] = [];
+        if (!updated[key].includes(value)) {
+          updated[key].push(value);
         }
-  
-        const query = createQueryString(newFilters);
-        replace(`${pathname}?${query}`);
-      },
-      [filters, replace, createQueryString]
-    );
+        return updated;
+      });
+    },
+    [filters]
+  );
+
+  // Add / update search query
+  const setQuery = useCallback(
+    (value: string) => {
+      const newFilters = { ...currentFilters };
+
+      if (value) {
+        newFilters['search'] = [value];
+      } else {
+        delete newFilters['search'];
+      }
+
+      const query = createQueryString(newFilters);
+      replace(`${pathname}?${query}`);
+    },
+    [filters, replace, createQueryString]
+  );
 
   // Remove filter
-  const removeFilter = useCallback((key: string, value: string) => {
-    setLocalFilters((prev) => {
-      const updated = { ...(prev || filters) };
-      if (!updated[key]) return prev;
-      updated[key] = updated[key].filter((v) => v !== value);
-      if (updated[key].length === 0) delete updated[key];
-      return updated;
-    });
-  }, [filters]);
+  const removeFilter = useCallback(
+    (key: string, value: string) => {
+      setLocalFilters((prev) => {
+        const updated = { ...(prev || filters) };
+        if (!updated[key]) return prev;
+        updated[key] = updated[key].filter((v) => v !== value);
+        if (updated[key].length === 0) delete updated[key];
+        return updated;
+      });
+    },
+    [filters]
+  );
 
   // apply filters
   const applyFilters = useCallback(() => {
     const query = createQueryString(currentFilters);
     replace(query ? `${pathname}?${query}` : `${pathname}`);
-    setLocalFilters(null);
   }, [currentFilters, replace, createQueryString, pathname]);
 
   // Clear all filters
   const clearFilters = useCallback(() => {
     replace(pathname);
     setLocalFilters(null);
-  }, [replace, pathname]);
+  }, [currentFilters, replace, pathname]);
 
   return {
     filters: currentFilters,

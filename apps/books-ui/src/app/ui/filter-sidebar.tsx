@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useFilters } from '../lib/use-filters';
+import { API_URL } from '../lib/api';
 
-export default function FilterSidebar({ genres }: { genres: string[] }) {
+export default function FilterSidebar() {
+  const [genres, setGenres] = useState<string[]>([]);
   const [openSections, setOpenSections] = useState({
     genre: true,
     author: true,
@@ -19,6 +21,20 @@ export default function FilterSidebar({ genres }: { genres: string[] }) {
       setFilter(type, item);
     }
   };
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await fetch(`${API_URL}/genres`);
+        const data = await response.json();
+        setGenres(data);
+      } catch (error) {
+        console.error('Failed to fetch books:', error);
+      }
+    };
+
+    fetchGenres();
+  }, []);
 
   const filterSection = (title: string, items: string[], type: string) => {
     const isOpen = openSections[type as keyof typeof openSections];
