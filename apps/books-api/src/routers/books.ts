@@ -1,25 +1,37 @@
 import express from 'express';
 import { Book } from '../models/book.interface';
+import { buildBooksQuery } from '../lib/books-query';
 
 export const router = express.Router();
 
 const API_BASE_URL = 'https://openlibrary.org';
 
+const formatBook = (book: any): Book => ({
+  title: book.title,
+  authorName: book.author_name ?? ['Unknown Author'],
+  authorKey: book.author_key,
+  firstPublishYear: book.first_publish_year,
+  coverId: book.cover_i,
+  language: book.language,
+  coverEditionKey: book.cover_edition_key,
+  id: book.key,
+  coverImage: book.cover_i
+    ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+    : `/assets/${Math.random() > 0.5 ? 'fallback1' : 'fallback2'}.png`,
+});
+
 router.get('/books', async (req, res) => {
   try {
+    const fields =
+      'title,author_name,author_key,cover_i,first_publish_year,key,language,cover_edition_key';
+    const query = buildBooksQuery(req.query);
     const response = await fetch(
       `${API_BASE_URL}/search.json?q=${encodeURIComponent(
-        req.query.search?.toString() ?? ''
-      )}`
+        query
+      )}&fields=${fields}&limit=${req.query.limit ?? 25}`
     );
     const booksJson = await response.json();
-    const books: Book[] = booksJson.docs.map((book: any) => ({
-      title: book.title,
-      authorName: book.author_name,
-      firstPublishYear: book.first_publish_year,
-      authorKey: book.author_key,
-      coverId: book.cover_i,
-    }));
+    const books: Book[] = booksJson.docs.map((book: any) => formatBook(book));
     res.send(books);
   } catch (e) {
     console.log(e);
@@ -35,34 +47,13 @@ router.get('/genres', async (req, res) => {
       'Fantasy',
       'Romance',
       'Science Fiction',
-      'Biography',
+      // 'Biography',
       'History',
-      'Self-Help',
+      // 'Self-Help',
+      'Horror',
+      'Thriller',
     ];
     res.send(genres);
-  } catch (e) {
-    console.log(e);
-    res.status(500).send();
-  }
-});
-
-router.get('/featuredBooks', async (req, res) => {
-  try {
-    const response = await fetch(
-      `${API_BASE_URL}/search.json?q=${encodeURIComponent('featured books')}`
-    );
-    const booksJson = await response.json();
-    console.log('booksJson', booksJson.docs.slice(0, 3));
-    const books: Book[] = booksJson.docs
-      .slice(0, 3) // Get first 3 books
-      .map((book: any) => ({
-        title: book.title,
-        authorName: book.author_name,
-        firstPublishYear: book.first_publish_year,
-        authorKey: book.author_key,
-        coverId: book.cover_i,
-      }));
-    res.send(books);
   } catch (e) {
     console.log(e);
     res.status(500).send();

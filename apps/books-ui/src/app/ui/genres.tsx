@@ -29,14 +29,14 @@ export default function Genres() {
   }
 
   return (
-    <section className="py-16">
+    <section className="py-8">
       <div className="max-w-7xl mx-auto px-4">
-        <h3 className="text-3xl font-bold text-center mb-12">Popular Genres</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-green-50">
+        <h3 className="text-3xl font-bold text-center mb-12 text-primary">Popular Genres</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {genres.map((genre) => (
             <div
               key={genre}
-              className="bg-moonstone hover:bg-cyan-200 text-slate-950 py-4 px-6 rounded-lg font-semibold text-center shadow-md transition cursor-pointer"
+              className="bg-card hover:bg-gold/20 text-primary py-4 px-6 rounded-lg font-semibold text-center shadow-md transition cursor-pointer border border-border"
             >
               {genre}
             </div>

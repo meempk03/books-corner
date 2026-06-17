@@ -1,0 +1,27 @@
+'use client';
+
+import { Search } from 'lucide-react';
+import { useDebouncedCallback } from 'use-debounce';
+import { useFilters } from '../lib/use-filters';
+
+export default function SearchBar({ placeholder }: { placeholder: string }) {
+  const { filters, setQuery } = useFilters();
+  const searchQuery: string = Array.isArray(filters.search) ? filters.search[0] : '';
+
+  const handleSearch = useDebouncedCallback((query: string) => setQuery(query), 300);
+
+  return (
+    <div className="mb-8 flex items-center gap-2 bg-card rounded-md px-4 py-3 border border-border">
+      <Search className="w-5 h-5 text-muted" />
+      <input
+        type="text"
+        placeholder={placeholder}
+        onChange={(e) => {
+          handleSearch(e.target.value);
+        }}
+        defaultValue={searchQuery?.toString()}
+        className="flex-grow bg-transparent outline-none text-primary placeholder-muted"
+      />
+    </div>
+  );
+}
