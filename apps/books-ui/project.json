@@ -6,7 +6,16 @@
   "tags": [],
   "targets": {
     "build": {
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "options": {
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/books-ui/public",
+            "output": "."
+          }
+        ]
+      }
     }
   }
 }
