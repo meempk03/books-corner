@@ -12,7 +12,7 @@
           {
             "glob": "**/*",
             "input": "apps/books-ui/public",
-            "output": "."
+            "output": ".next/**"
           }
         ]
       }
