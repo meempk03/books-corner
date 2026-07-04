@@ -1,23 +1,18 @@
 import type { NextConfig } from "next";
-import { composePlugins, withNx } from "@nx/next";
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig: import('next').NextConfig = {
   /* config options here */
-  nx: {
-    svgr: false,
-  },
   images: {
-    domains: ['covers.openlibrary.org'],
+    // domains: ['covers.openlibrary.org'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'covers.openlibrary.org',
+      },
+    ],
   },
-};
-
-/**
- * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
- **/
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-];
+} as NextConfig;
 
 // export default nextConfig;
-export default composePlugins(...plugins)(nextConfig);
+export default nextConfig;
