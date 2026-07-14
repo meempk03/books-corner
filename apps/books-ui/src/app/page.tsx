@@ -1,7 +1,10 @@
+import { Suspense } from 'react';
 import FeaturedBooks from './ui/featured-books';
 import Genres from './ui/genres';
+import BookListSkeleton from './ui/skeletons/book-list-skeleton';
+import { GenresSkeleton } from './ui/skeletons/genres-skeleton';
 
-export default function Page() {
+export default async function Page() {
   return (
     <>
       <section className="py-20 text-center">
@@ -19,13 +22,28 @@ export default function Page() {
       </section>
 
       {/* Popular Genres */}
-      <Genres />
+      <section className="py-8">
+        <div className="max-w-7xl mx-auto px-4">
+          <h3 className="text-3xl font-bold text-center mb-12 text-primary">
+            Popular Genres
+          </h3>
+          <Suspense fallback={<GenresSkeleton />}>
+            <Genres />
+          </Suspense>
+        </div>
+      </section>
 
-      {/* Featured Books */}
-      <FeaturedBooks type={'Popular'} />
-      <FeaturedBooks type={'Romance'} />
-      <FeaturedBooks type={'Classics'} />
-      <FeaturedBooks type={'Motivational'} />
+      {/* Featured Books Sections */}
+      {['Popular', 'Romance', 'Classics', 'Motivational'].map((type) => (
+        <section key={type} className="py-8">
+          <div className="max-w-7xl mx-auto px-4">
+            <h3 className="text-3xl font-bold mb-12 text-primary">{type}</h3>
+            <Suspense key={type} fallback={<BookListSkeleton count={5} />}>
+              <FeaturedBooks key={type} type={type} />
+            </Suspense>
+          </div>
+        </section>
+      ))}
     </>
   );
 }

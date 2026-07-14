@@ -1,7 +1,5 @@
+import PageLoader from "../ui/skeletons/page-loader";
+
 export default function Loading() {
-    return (
-        <div className="text-center py-16">
-        <p className="text-moonstone text-lg">Loading books...</p>
-        </div>
-    );
+    return <PageLoader message="Loading books..." />;
 }
