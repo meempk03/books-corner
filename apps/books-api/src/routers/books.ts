@@ -4,6 +4,8 @@ import { buildBooksQuery } from '../lib/books-query';
 
 export const router = express.Router();
 
+const popularGenres = ['Fiction', 'Mystery', 'Fantasy', 'History', 'Horror', 'Thriller'];
+
 const API_BASE_URL = 'https://openlibrary.org';
 
 const formatBook = (book: any): Book => ({
@@ -39,20 +41,23 @@ router.get('/books', async (req, res) => {
   }
 });
 
+router.get('/popularGenres', async (req, res) => {
+  try {
+    res.send(popularGenres);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
 router.get('/genres', async (req, res) => {
   try {
-    const genres = [
-      'Fiction',
-      'Mystery',
-      'Fantasy',
-      'Romance',
-      'Science Fiction',
-      // 'Biography',
-      'History',
-      // 'Self-Help',
-      'Horror',
-      'Thriller',
-    ];
+    const genres = popularGenres.concat([
+      'Biography',
+      'Self-Help',
+      'Classics',
+      'Motivational',
+    ]);
     res.send(genres);
   } catch (e) {
     console.log(e);

@@ -1,8 +1,9 @@
 import { Suspense } from 'react';
+import Link from 'next/link';
 import FeaturedBooks from './ui/featured-books';
-import Genres from './ui/genres';
+import PopularGenres from './ui/popular-genres';
 import BookListSkeleton from './ui/skeletons/book-list-skeleton';
-import { GenresSkeleton } from './ui/skeletons/genres-skeleton';
+import GenresSkeleton from './ui/skeletons/genres-skeleton';
 
 export default async function Page() {
   return (
@@ -15,9 +16,9 @@ export default async function Page() {
           <p className="text-secondary text-lg mb-6">
             Explore thousands of books from every genre and author you love.
           </p>
-          <button className="bg-gold hover:bg-gold/80 text-surface px-6 py-3 rounded-md font-semibold transition">
+          <Link href="/books" className="bg-gold hover:bg-gold/80 text-surface px-6 py-3 rounded-md font-semibold transition">
             Browse Books
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -28,13 +29,13 @@ export default async function Page() {
             Popular Genres
           </h3>
           <Suspense fallback={<GenresSkeleton />}>
-            <Genres />
+            <PopularGenres />
           </Suspense>
         </div>
       </section>
 
       {/* Featured Books Sections */}
-      {['Popular', 'Romance', 'Classics', 'Motivational'].map((type) => (
+      {['Romance', 'Classics', 'Motivational'].map((type) => (
         <section key={type} className="py-8">
           <div className="max-w-7xl mx-auto px-4">
             <h3 className="text-3xl font-bold mb-12 text-primary">{type}</h3>
