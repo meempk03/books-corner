@@ -41,7 +41,7 @@ router.get('/books', async (req, res) => {
   }
 });
 
-router.get('/popularGenres', async (req, res) => {
+router.get('/popular-genres', async (req, res) => {
   try {
     res.send(popularGenres);
   } catch (e) {
