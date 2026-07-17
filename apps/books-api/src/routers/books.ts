@@ -54,6 +54,7 @@ router.get('/genres', async (req, res) => {
   try {
     const genres = popularGenres.concat([
       'Biography',
+      'Romance',
       'Self-Help',
       'Classics',
       'Motivational',

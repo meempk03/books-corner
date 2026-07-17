@@ -16,14 +16,17 @@ export default async function Page() {
           <p className="text-secondary text-lg mb-6">
             Explore thousands of books from every genre and author you love.
           </p>
-          <Link href="/books" className="bg-gold hover:bg-gold/80 text-surface px-6 py-3 rounded-md font-semibold transition">
+          <Link
+            href="/books"
+            className="bg-gold hover:bg-gold/80 text-surface px-6 py-3 rounded-md font-semibold transition"
+          >
             Browse Books
           </Link>
         </div>
       </section>
 
       {/* Popular Genres */}
-      <section className="py-8">
+      <section className="py-8 pb-20">
         <div className="max-w-7xl mx-auto px-4">
           <h3 className="text-3xl font-bold text-center mb-12 text-primary">
             Popular Genres
@@ -38,7 +41,15 @@ export default async function Page() {
       {['Romance', 'Classics', 'Motivational'].map((type) => (
         <section key={type} className="py-8">
           <div className="max-w-7xl mx-auto px-4">
-            <h3 className="text-3xl font-bold mb-12 text-primary">{type}</h3>
+            <div className="flex justify-between items-center mb-2">
+              <h3 className="text-3xl font-bold text-primary">{type}</h3>
+              <Link
+                href={`/books?genre=${type}`}
+                className="text-gold font-bold hover:text-gold/80 transition"
+              >
+                See All
+              </Link>
+            </div>
             <Suspense key={type} fallback={<BookListSkeleton count={5} />}>
               <FeaturedBooks key={type} type={type} />
             </Suspense>
