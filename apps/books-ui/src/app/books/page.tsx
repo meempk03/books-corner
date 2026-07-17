@@ -2,6 +2,7 @@ import SearchBar from '../ui/search';
 import FilterSidebar from '../ui/filter-sidebar';
 import BooksList from '../ui/books-list';
 import { Suspense } from 'react';
+import BookListSkeleton from '../ui/skeletons/book-list-skeleton';
 
 export default async function Page({
   searchParams,
@@ -37,12 +38,7 @@ export default async function Page({
             {/* Search Bar */}
             <SearchBar placeholder="Search books or authors..." />
 
-
-            <Suspense
-              fallback={
-                <div className="text-center py-16">Loading books...</div>
-              }
-            >
+            <Suspense key={queryParams.toString()} fallback={<BookListSkeleton />}>
               <BooksList queryParams={queryParams.toString()} />
             </Suspense>
           </section>

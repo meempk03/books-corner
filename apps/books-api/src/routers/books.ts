@@ -4,6 +4,8 @@ import { buildBooksQuery } from '../lib/books-query';
 
 export const router = express.Router();
 
+const popularGenres = ['Fiction', 'Mystery', 'Fantasy', 'History', 'Horror', 'Thriller'];
+
 const API_BASE_URL = 'https://openlibrary.org';
 
 const formatBook = (book: any): Book => ({
@@ -25,11 +27,11 @@ router.get('/books', async (req, res) => {
     const fields =
       'title,author_name,author_key,cover_i,first_publish_year,key,language,cover_edition_key';
     const query = buildBooksQuery(req.query);
-    const response = await fetch(
-      `${API_BASE_URL}/search.json?q=${encodeURIComponent(
-        query
-      )}&fields=${fields}&limit=${req.query.limit ?? 25}`
-    );
+    let url = `${API_BASE_URL}/search.json?q=${encodeURIComponent(query)}&fields=${fields}`;
+    if (req.query.limit) {
+      url += `&limit=${req.query.limit}`;
+    }
+    const response = await fetch(url);
     const booksJson = await response.json();
     const books: Book[] = booksJson.docs.map((book: any) => formatBook(book));
     res.send(books);
@@ -39,20 +41,24 @@ router.get('/books', async (req, res) => {
   }
 });
 
+router.get('/popularGenres', async (req, res) => {
+  try {
+    res.send(popularGenres);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send();
+  }
+});
+
 router.get('/genres', async (req, res) => {
   try {
-    const genres = [
-      'Fiction',
-      'Mystery',
-      'Fantasy',
+    const genres = popularGenres.concat([
+      'Biography',
       'Romance',
-      'Science Fiction',
-      // 'Biography',
-      'History',
-      // 'Self-Help',
-      'Horror',
-      'Thriller',
-    ];
+      'Self-Help',
+      'Classics',
+      'Motivational',
+    ]);
     res.send(genres);
   } catch (e) {
     console.log(e);
