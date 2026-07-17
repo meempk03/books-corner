@@ -4,7 +4,8 @@ import { API_URL } from '../lib/api';
 export default async function PopularGenres() {
   let genres: string[] = [];
   try {
-    const response = await fetch(`${API_URL}/${encodeURIComponent('popular-genres')}`);
+    console.log('Fetching popular genres from API...', `${API_URL}/popularGenres`);
+    const response = await fetch(`${API_URL}/popularGenres')}`);
     genres = await response.json();
   } catch (error) {
     console.error('Error fetching genres:', error);
