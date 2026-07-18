@@ -6,6 +6,7 @@ const getApiUrl = () => {
 
   // In preview/development
   if (process.env.VERCEL_ENV === 'preview') {
+    console.log('Using preview API URL:', process.env.NEXT_PUBLIC_API_URL, process.env.VERCEL_ENV);
     return process.env.NEXT_PUBLIC_API_URL || process.env.VERCEL_BRANCH_URL;
   }
   
