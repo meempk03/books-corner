@@ -18,7 +18,7 @@ export default async function PopularGenres() {
           href={`/books?genre=${encodeURIComponent(genre)}`}
           key={genre}
           className="bg-card hover:bg-gold/20 text-primary py-4 px-6 rounded-lg font-semibold text-center shadow-md transition cursor-pointer border border-border"
-        >
+        > 
           {genre}
         </Link>
       ))}
