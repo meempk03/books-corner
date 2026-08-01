@@ -5,7 +5,7 @@ export default async function PopularGenres() {
   let genres: string[] = [];
   try {
     console.log('Fetching popular genres from API...', `${API_URL}/popularGenres`);
-    const response = await fetch(`${API_URL}/popularGenres')}`);
+    const response = await fetch(`${API_URL}/popularGenres`);
     genres = await response.json();
   } catch (error) {
     console.error('Error fetching genres:', error);
