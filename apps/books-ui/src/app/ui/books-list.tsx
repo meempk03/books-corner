@@ -7,9 +7,13 @@ export default async function BooksList({
 }: {
   queryParams: string;
 }) {
-  const filteredBooks: Book[] = await fetch(
-    `${API_URL}/books?${queryParams}`
-  ).then((res) => res.json());
+  let filteredBooks: Book[] = [];
+  try {
+    const response = await fetch(`${API_URL}/books?${queryParams}`);
+    filteredBooks = await response?.json();
+  } catch (error) {
+    console.error('Error fetching filtered books:', error);
+  }
 
   return (
     <>
