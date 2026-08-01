@@ -5,7 +5,7 @@ export default async function PopularGenres() {
   let genres: string[] = [];
   try {
     console.log('Fetching popular genres from API...', `${API_URL}/popularGenres`);
-    const response = await fetch(`${API_URL}/popularGenres')}`);
+    const response = await fetch(`${API_URL}/popularGenres`);
     genres = await response.json();
   } catch (error) {
     console.error('Error fetching genres:', error);
@@ -18,7 +18,7 @@ export default async function PopularGenres() {
           href={`/books?genre=${encodeURIComponent(genre)}`}
           key={genre}
           className="bg-card hover:bg-gold/20 text-primary py-4 px-6 rounded-lg font-semibold text-center shadow-md transition cursor-pointer border border-border"
-        >
+        > 
           {genre}
         </Link>
       ))}
