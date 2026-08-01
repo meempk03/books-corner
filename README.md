@@ -69,10 +69,3 @@ Open `http://localhost:3000` to view the Books UI application.
 ### Data Source
 
 - Open Library API
-
-## Roadmap
-
-- [ ] Update to latest Nx and Next.js versions
-- [ ] Implement click functionality to navigate to books listing page with filtered books
-- [ ] Implement books detail page
-- [ ] Support light/dark theme toggle
